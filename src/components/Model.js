@@ -1,79 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Model.css";
 import axios from "axios";
 
+// const initialValue = {
+//     post: '',
+
+// }
 const Modal = () => {
     const [modal, setModal] = useState(true);
-    const [post, setPost] = useState('');
-    const [thumbFile, setThumbFile] = useState('')
+    // const [post, setPost] = useState('');
+    // const [thumbFile, setThumbFile] = useState('')
+    // const [handlerButton, setHandlerButton] = useState(true);
+    const [values, setValues] = useState(
+        {
+            post: '',
+            thumbFile: '',
+            handlerButton: true
+        }
+        // initialValue
+    );
     if (modal) {
         document.body.classList.add('active-modal')
     }
 
-    // let formdata = new FormData;
-    // const onFileChangeHandler = (e) => {
-    //     if(e.target && e.target.files[0]){
-    //         formdata.append("file",e.target.files[0])
-    //         console.log(e.target.files[0])
-    //     }
-    // }
+    const changeHandler = (name, e) => {
+        const { value, files } = e.target;
+        setValues({
+            ...values,
+            [name]: name === "thumbFile" ? files[0] : value,
+        });
+        // setHandlerButton(false)
+    }
+    useEffect(() => {
+        if (values.post !== '' && values.thumbFile !== '') {
+            setValues({
+                ...values,
+                handlerButton: false
+            });
+        }
+    }, [values.post, values.thumbFile])
     const onSubmitHandler = (e) => {
         e.preventDefault();
         // console.log(thumbFile)
         let fromdata = new FormData();
-        console.log("post",post)
-
-        fromdata.append('post', post);
-        // fromdata.append('myfile', thumbFile);
-        const headers = {
-            // 'Content-Type': 'multipart/form-data',
-            'Content-Type': 'application/json',
-
-        }
-
-
-        // axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-        // axios.post(`http://localhost:3001/posts`, json, {
-        //     headers: headers
-        // }).then(res => {
-        // })
-
-        axios.post(`http://localhost:3001/posts`, fromdata, {
-            headers
+        // console.log(values.thumbFile);
+        // console.log("post", post)
+        fromdata.append('post', values.post);
+        fromdata.append('file', values.thumbFile);
+        // console.log("data",fromdata)
+        // for (let keyValuePair of fromdata.entries()) {
+        //     console.log(keyValuePair); //has form ['name','Alex Johnson']
+        // }
+        axios.post('http://localhost:3001/posts', { post:values.post, image:JSON.stringify(values.thumbFile),form:fromdata }).then(res => {
+            alert(JSON.stringify(fromdata.name))
         })
-            .then(res => {
-                   console.log(res);
-                //    console.log(res.data);
-            })
-        // let formData = new FormData();    //formdata object
-
-        // formData.append('name', 'ABC');   //append the values with key, value pair
-        // formData.append('age', 20);
-
-
-        // let formdata = new FormData;
-        // formdata.append('myFile',thumbFile)
-        // axios.post("http://localhost/popup_frank/public/uploads/", formdata,{
-        //     headers
-        //     // form: fromdata,          
-        //     // post: post,
-        //     // image: {
-        //     //     lastModified: thumbFile.lastModified,
-        //     //     lastModifiedDate: thumbFile.lastModifiedDate,
-        //     //     name: thumbFile.name,
-        //     //     size: thumbFile.size,
-        //     //     type: thumbFile.type
-        //     // }
-        // })
-        //     .then((res) => {
-        //         console.log(res)
-        //         // getData();
-        //         // setTitle('');
-        //         // setBody('');
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     })
     };
 
 
@@ -86,21 +66,21 @@ const Modal = () => {
                             <h2>Create Post</h2>
                             <label>Post Comments</label><br />
                             <input
-                                name="post"
+                                id="post"
                                 type="text"
-                                value={post}
-                                onChange={(e) => { setPost(e.target.value) }}
+                                value={values.post}
+                                onChange={(value) => changeHandler('post', value)}
                             /><br />
                             <label>Choose Thumbnail</label><br />
                             <input
                                 type="file"
-                                name="myFile"
-                                onChange={(e) => { setThumbFile(e.target.files[0]) }}
+                                id="file"
+                                onChange={(value) => changeHandler('thumbFile', value)}
                             // onChange={onFileChangeHandler}
                             />
                             <br />
                             <br />
-                            <input type="submit" value="Post" />
+                            <input type="submit" value="Post" disabled={values.handlerButton} />
                         </form>
                     </div>
                 </div>
