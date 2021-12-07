@@ -13,7 +13,6 @@ const Modal = () => {
     const [values, setValues] = useState(
         {
             post: '',
-            post_len: 0,
             thumbFile: '',
             handlerButton: true
         }
@@ -32,9 +31,11 @@ const Modal = () => {
             ...values,
             [name]: name === "thumbFile" ? files[0] : value,
         });
-        setWord(word - values.post.split(' ').length)
+        setWord(max_word - (values.post).split(' ').length +1)
+
         // setWord(values.post.match(/(\w+)/g).length) 
-        // setHandlerButton(false)
+        // setHandlerButton(false)c
+        console.log(values.thumbFile)
     }
 
     useEffect(() => {
@@ -64,7 +65,6 @@ const Modal = () => {
             alert("data sent")
             setValues({
                 post: '',
-                post_len: 0,
                 thumbFile: '',
                 handlerButton: true
             })
@@ -96,8 +96,11 @@ const Modal = () => {
                     <div onClick={toggleModal} className="overlay"></div>
                     <div className="modal-content">
                         <form onSubmit={onSubmitHandler} encType="multipart/form-data">
-                            <div>
+                            <div className="heading">
                                 <h2>Create Post </h2>
+
+                                <input type="submit" className="btn" value="x" onClick={toggleModal} />
+
                             </div>
                             <label>{showPlusPost ? <BsFillPlusCircleFill onClick={changePlusPost} /> : <AiFillMinusCircle onClick={changePlusPost} />} Post Comments  <BsPencilSquare /></label><br />
                             {showinputTagPost ?
@@ -133,7 +136,7 @@ const Modal = () => {
                             <br />
                             <br />
                             <input type="submit" value="Post" disabled={values.handlerButton} />
-                            <input type="submit" value="Close" onClick={toggleModal} />
+
                         </form>
                     </div>
                 </div>

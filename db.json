@@ -1,15 +1,9 @@
 {
   "posts": [
     {
-      "post": "sdas",
-      "image": {
-        "lastModified": 1638767121391,
-        "lastModifiedDate": "2021-12-06T05:05:21.391Z",
-        "name": "image_2021_12_02T13_23_10_511Z.png",
-        "size": 74974,
-        "type": "image/png"
-      },
-      "id": 1
+      "post": "this is post for sending the data to dn.json",
+      "image": "image_2021_12_02T13_23_10_511Z.png",
+      "id": 2
     }
   ]
 }
