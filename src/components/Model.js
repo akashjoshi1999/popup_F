@@ -6,9 +6,6 @@ import { AiFillMinusCircle } from 'react-icons/ai'
 
 const Modal = () => {
     const [modal, setModal] = useState(true);
-    // const [post, setPost] = useState('');
-    // const [thumbFile, setThumbFile] = useState('')
-    // const [handlerButton, setHandlerButton] = useState(true);
     let max_word = 2000;
     const [values, setValues] = useState(
         {
@@ -16,7 +13,6 @@ const Modal = () => {
             thumbFile: '',
             handlerButton: true
         }
-        // initialValue
     );
     const toggleModal = () => {
         setModal(!modal);
@@ -32,9 +28,6 @@ const Modal = () => {
             [name]: name === "thumbFile" ? files[0] : value,
         });
         setWord(max_word - (values.post).split(' ').length +1)
-
-        // setWord(values.post.match(/(\w+)/g).length) 
-        // setHandlerButton(false)c
         console.log(values.thumbFile)
     }
 
@@ -48,16 +41,6 @@ const Modal = () => {
     }, [values.post, values.thumbFile])
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        // console.log(thumbFile)
-        // let fromdata = new FormData();
-        // console.log(values.thumbFile);
-        // console.log("post", post)
-        // fromdata.append('post', values.post);
-        // fromdata.append('file', values.thumbFile);
-        // console.log("data",fromdata)
-        // for (let keyValuePair of fromdata.entries()) {
-        //     console.log(keyValuePair); //has form ['name','Alex Johnson']
-        // }
         axios.post('http://localhost:3001/posts', {
             post: values.post,
             image: values.thumbFile.name,
@@ -81,11 +64,9 @@ const Modal = () => {
     const changePlusPost = () => {
         setShowPlusPost(!showPlusPost)
         setShowinputTagPost(!showinputTagPost)
-        // setShowinputTagFile(!showinputTagFile)
     }
     const changePlusFile = () => {
         setShowPlusFile(!showPlusFile)
-        // setShowinputTagPost(!showinputTagPost)
         setShowinputTagFile(!showinputTagFile)
     }
     const [word, setWord] = useState(2000)
@@ -98,9 +79,7 @@ const Modal = () => {
                         <form onSubmit={onSubmitHandler} encType="multipart/form-data">
                             <div className="heading">
                                 <h2>Create Post </h2>
-
                                 <input type="submit" className="btn" value="x" onClick={toggleModal} />
-
                             </div>
                             <label>{showPlusPost ? <BsFillPlusCircleFill onClick={changePlusPost} /> : <AiFillMinusCircle onClick={changePlusPost} />} Post Comments  <BsPencilSquare /></label><br />
                             {showinputTagPost ?
@@ -112,7 +91,6 @@ const Modal = () => {
                                         value={values.post}
                                         onChange={(value) => {
                                             changeHandler('post', value)
-                                            // changeHandler('post_len', value)
                                         }
                                         }
                                     />
@@ -120,7 +98,6 @@ const Modal = () => {
                                 </div> : ""
                             }
                             <br />
-                            {/* <label>Choose Thumbnail</label><br /> */}
                             <label>{showPlusFile ? <BsFillPlusCircleFill onClick={changePlusFile} /> : <AiFillMinusCircle onClick={changePlusFile} />}Choose Thumbnail  </label><br />
                             {showinputTagFile ?
                                 <input
@@ -132,11 +109,9 @@ const Modal = () => {
                                     }}
                                 /> : ""
                             }
-
                             <br />
                             <br />
                             <input type="submit" value="Post" disabled={values.handlerButton} />
-
                         </form>
                     </div>
                 </div>
