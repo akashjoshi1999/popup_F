@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "./Model.css";
-import axios from "axios";
 import { BsPencilSquare, BsFillPlusCircleFill } from "react-icons/bs";
 import { AiFillMinusCircle } from 'react-icons/ai'
 import { MdOutlineDriveFolderUpload } from "react-icons/md";
-
+import axios from "axios";
+import "./Model.css";
 
 const Modal = () => {
     const [modal, setModal] = useState(true);
-    let max_word = 100;
     const [showPlusPost, setShowPlusPost] = useState(true);
     const [showPlusFile, setShowPlusFile] = useState(true);
     const [showinputTagPost, setShowinputTagPost] = useState(false)
@@ -21,9 +19,12 @@ const Modal = () => {
             handlerButton: true
         }
     );
+    let max_word = 100;
+
     const toggleModal = () => {
         setModal(!modal);
     };
+
     if (modal) {
         document.body.classList.add('active-modal')
     }
@@ -45,7 +46,7 @@ const Modal = () => {
             });
         }
     }, [values.post, values.thumbFile])
-    
+
     const onSubmitHandler = (e) => {
         e.preventDefault();
         console.log(values.thumbFile)
@@ -67,14 +68,17 @@ const Modal = () => {
             setShowinputTagFile(!showinputTagFile)
         })
     };
+
     const changePlusPost = () => {
         setShowPlusPost(!showPlusPost)
         setShowinputTagPost(!showinputTagPost)
     }
+
     const changePlusFile = () => {
         setShowPlusFile(!showPlusFile)
         setShowinputTagFile(!showinputTagFile)
     }
+
     return (
         <>
             {modal && (
@@ -103,18 +107,17 @@ const Modal = () => {
                                     <p>{word} words</p>
                                 </div> : ""
                             }
-                            
                             <label>{showPlusFile ? <BsFillPlusCircleFill onClick={changePlusFile} /> : <AiFillMinusCircle onClick={changePlusFile} />} Upload Thumbnail  </label><br />
                             {showinputTagFile ?
                                 <div>
-                                <input
-                                    type="file"
-                                    id="file"
-                                    style={{"display":"none"}}
-                                    onChange={(value) => {
-                                        changeHandler('thumbFile', value)
-                                    }}
-                                /><label for="file">{<MdOutlineDriveFolderUpload size={60}/>}</label>
+                                    <input
+                                        type="file"
+                                        id="file"
+                                        style={{ "display": "none" }}
+                                        onChange={(value) => {
+                                            changeHandler('thumbFile', value)
+                                        }}
+                                    /><label for="file">{<MdOutlineDriveFolderUpload size={60} />}</label>
                                 </div> : ""
                             }
                             <br />

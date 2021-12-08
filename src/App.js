@@ -1,8 +1,8 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import Modal from './components/Model';
+import Modal from './components/Modal/Model';
 import Home from './components/Home';
+import Showmap from './components/Map/Showmap';
 import './App.css';
-import Showmap from './components/Showmap';
 
 function App() {
   return (
