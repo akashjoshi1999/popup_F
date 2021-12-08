@@ -3,10 +3,17 @@ import "./Model.css";
 import axios from "axios";
 import { BsPencilSquare, BsFillPlusCircleFill } from "react-icons/bs";
 import { AiFillMinusCircle } from 'react-icons/ai'
+import { MdOutlineDriveFolderUpload } from "react-icons/md";
+
 
 const Modal = () => {
     const [modal, setModal] = useState(true);
     let max_word = 100;
+    const [showPlusPost, setShowPlusPost] = useState(true);
+    const [showPlusFile, setShowPlusFile] = useState(true);
+    const [showinputTagPost, setShowinputTagPost] = useState(false)
+    const [showinputTagFile, setShowinputTagFile] = useState(false)
+    const [word, setWord] = useState(100)
     const [values, setValues] = useState(
         {
             post: '',
@@ -28,7 +35,6 @@ const Modal = () => {
             [name]: name === "thumbFile" ? files[0] : value,
         });
         setWord(max_word - (values.post).split(' ').length + 1)
-
     }
 
     useEffect(() => {
@@ -39,6 +45,7 @@ const Modal = () => {
             });
         }
     }, [values.post, values.thumbFile])
+    
     const onSubmitHandler = (e) => {
         e.preventDefault();
         console.log(values.thumbFile)
@@ -60,10 +67,6 @@ const Modal = () => {
             setShowinputTagFile(!showinputTagFile)
         })
     };
-    const [showPlusPost, setShowPlusPost] = useState(true);
-    const [showPlusFile, setShowPlusFile] = useState(true);
-    const [showinputTagPost, setShowinputTagPost] = useState(false)
-    const [showinputTagFile, setShowinputTagFile] = useState(false)
     const changePlusPost = () => {
         setShowPlusPost(!showPlusPost)
         setShowinputTagPost(!showinputTagPost)
@@ -72,7 +75,6 @@ const Modal = () => {
         setShowPlusFile(!showPlusFile)
         setShowinputTagFile(!showinputTagFile)
     }
-    const [word, setWord] = useState(100)
     return (
         <>
             {modal && (
@@ -84,13 +86,14 @@ const Modal = () => {
                                 <h2>Create Post </h2>
                                 <input type="submit" className="btn" value="x" onClick={toggleModal} />
                             </div>
-                            <label>{showPlusPost ? <BsFillPlusCircleFill onClick={changePlusPost} /> : <AiFillMinusCircle onClick={changePlusPost} />} Post Comments  <BsPencilSquare /></label><br />
+                            <label>{showPlusPost ? <BsFillPlusCircleFill onClick={changePlusPost} /> : <AiFillMinusCircle onClick={changePlusPost} />} Post Contents  <BsPencilSquare /></label><br />
                             {showinputTagPost ?
                                 <div>
-                                    <input
+                                    <textarea
                                         size="30"
                                         id="post"
                                         type="text"
+                                        className="text-form"
                                         value={values.post}
                                         onChange={(value) => {
                                             changeHandler('post', value)
@@ -100,20 +103,23 @@ const Modal = () => {
                                     <p>{word} words</p>
                                 </div> : ""
                             }
-                            <br />
-                            <label>{showPlusFile ? <BsFillPlusCircleFill onClick={changePlusFile} /> : <AiFillMinusCircle onClick={changePlusFile} />} Choose Thumbnail  </label><br />
+                            
+                            <label>{showPlusFile ? <BsFillPlusCircleFill onClick={changePlusFile} /> : <AiFillMinusCircle onClick={changePlusFile} />} Upload Thumbnail  </label><br />
                             {showinputTagFile ?
+                                <div>
                                 <input
                                     type="file"
                                     id="file"
+                                    style={{"display":"none"}}
                                     onChange={(value) => {
                                         changeHandler('thumbFile', value)
                                     }}
-                                /> : ""
+                                /><label for="file">{<MdOutlineDriveFolderUpload size={60}/>}</label>
+                                </div> : ""
                             }
                             <br />
                             <br />
-                            <input type="submit" value="Post" disabled={values.handlerButton} />
+                            <input type="submit" value="Post" className="input-btn" disabled={values.handlerButton} />
                         </form>
                     </div>
                 </div>

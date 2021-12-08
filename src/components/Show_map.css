@@ -1,0 +1,125 @@
+body,html{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0 ;
+    background-color: #EEF1F5;
+}
+*{
+    box-sizing: border-box;
+}
+.container{
+   
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.show-map {   
+    margin: 30px 0;
+    background-image: url("./img/map1.png");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+
+}
+.show-map .topics{
+    text-align: left;
+    position: absolute;
+    top: -5%;
+    left: 3%;
+    color: black;
+
+}
+
+.show-map .topics h4{
+    font-size: 25px;
+    margin: 20px 0 5px 0;
+}
+
+.add{
+    position: relative;
+    bottom: -35px;
+    left: 37%;
+    font-size: 18px;
+    max-width: 100%;
+    padding-top: 600px;
+    height: 800px;
+}
+
+
+@media (max-width:768px) {
+
+    .show-map{
+        background-size: contain;
+    }
+    .add{
+        position: absolute;
+        bottom: -35px;
+        left: 25%;
+        font-size: 18px;
+        max-width: 100%;
+        
+    }
+   
+}
+
+
+@media (max-width:425px) {
+
+    .show-map{
+        background-size: contain;
+    }
+    .add{
+        position: absolute;
+        bottom: -35px;
+        left: 0%;
+        font-size: 18px;
+        max-width: 100%;
+        margin: 0 50px;
+    }
+    .add img{
+        max-height: 85px;
+      
+    }
+}
+
+@media (max-width:375px) {
+
+    .show-map{
+        background-size: contain;
+    }
+    .add{
+        position: absolute;
+        bottom: -35px;
+        left: 0%;
+        font-size: 18px;
+        max-width: 100%;
+        margin: 0 30px;
+    }
+    .add img{
+        max-height: 85px;
+      
+    }
+}
+
+@media (max-width:320px) {
+
+    .show-map{
+        background-size: contain;
+    }
+    .add{
+        position: absolute;
+        bottom: -35px;
+        left: 0%;
+        font-size: 18px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    .add img{
+        max-height: 87px;
+      
+    }
+}

@@ -1,5 +1,5 @@
 body.active-modal {
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .btn-modal {
@@ -31,8 +31,8 @@ body.active-modal {
     background: #f1f1f1;
     padding: 14px 28px;
     border-radius: 3px;
-    max-width: 600px;
-    min-width: 300px;
+    width: 600px;
+    height: 400px;
 }
 
 .close-modal {
@@ -49,4 +49,14 @@ body.active-modal {
 
 .btn{
     height: 20px;
+}  
+.text-form{
+    height: 35px;
+    width: 600px;
 }
+
+.input-btn{
+    /* margin-top: 100px; */
+    position: absolute;
+}
+
