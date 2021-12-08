@@ -6,7 +6,7 @@ import { AiFillMinusCircle } from 'react-icons/ai'
 
 const Modal = () => {
     const [modal, setModal] = useState(true);
-    let max_word = 2000;
+    let max_word = 100;
     const [values, setValues] = useState(
         {
             post: '',
@@ -72,7 +72,7 @@ const Modal = () => {
         setShowPlusFile(!showPlusFile)
         setShowinputTagFile(!showinputTagFile)
     }
-    const [word, setWord] = useState(2000)
+    const [word, setWord] = useState(100)
     return (
         <>
             {modal && (
@@ -101,7 +101,7 @@ const Modal = () => {
                                 </div> : ""
                             }
                             <br />
-                            <label>{showPlusFile ? <BsFillPlusCircleFill onClick={changePlusFile} /> : <AiFillMinusCircle onClick={changePlusFile} />}Choose Thumbnail  </label><br />
+                            <label>{showPlusFile ? <BsFillPlusCircleFill onClick={changePlusFile} /> : <AiFillMinusCircle onClick={changePlusFile} />} Choose Thumbnail  </label><br />
                             {showinputTagFile ?
                                 <input
                                     type="file"
