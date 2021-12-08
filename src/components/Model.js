@@ -27,8 +27,8 @@ const Modal = () => {
             ...values,
             [name]: name === "thumbFile" ? files[0] : value,
         });
-        setWord(max_word - (values.post).split(' ').length +1)
-        console.log(values.thumbFile)
+        setWord(max_word - (values.post).split(' ').length + 1)
+
     }
 
     useEffect(() => {
@@ -41,9 +41,12 @@ const Modal = () => {
     }, [values.post, values.thumbFile])
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        console.log(values.thumbFile)
         axios.post('http://localhost:3001/posts', {
             post: values.post,
             image: values.thumbFile.name,
+            size: values.thumbFile.size,
+            type: values.thumbFile.type
         }).then(res => {
             alert("data sent")
             setValues({
@@ -105,7 +108,6 @@ const Modal = () => {
                                     id="file"
                                     onChange={(value) => {
                                         changeHandler('thumbFile', value)
-
                                     }}
                                 /> : ""
                             }

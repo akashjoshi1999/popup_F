@@ -3,7 +3,9 @@
     {
       "post": "this is post for sending the data to dn.json",
       "image": "image_2021_12_02T13_23_10_511Z.png",
-      "id": 2
+      "size": 74974,
+      "type": "image/png",
+      "id": 5
     }
   ]
 }
