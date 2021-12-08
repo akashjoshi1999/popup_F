@@ -9,8 +9,6 @@ const Modal = () => {
     const [modal, setModal] = useState(true);
     const [showPlusPost, setShowPlusPost] = useState(true);
     const [showPlusFile, setShowPlusFile] = useState(true);
-    const [showinputTagPost, setShowinputTagPost] = useState(false)
-    const [showinputTagFile, setShowinputTagFile] = useState(false)
     const [word, setWord] = useState(100)
     const [values, setValues] = useState(
         {
@@ -64,20 +62,8 @@ const Modal = () => {
             })
             setShowPlusFile(!showPlusFile)
             setShowPlusPost(!showPlusPost)
-            setShowinputTagPost(!showinputTagPost)
-            setShowinputTagFile(!showinputTagFile)
         })
     };
-
-    const changePlusPost = () => {
-        setShowPlusPost(!showPlusPost)
-        setShowinputTagPost(!showinputTagPost)
-    }
-
-    const changePlusFile = () => {
-        setShowPlusFile(!showPlusFile)
-        setShowinputTagFile(!showinputTagFile)
-    }
 
     return (
         <>
@@ -90,8 +76,8 @@ const Modal = () => {
                                 <h2>Create Post </h2>
                                 <input type="submit" className="btn" value="x" onClick={toggleModal} />
                             </div>
-                            <label>{showPlusPost ? <BsFillPlusCircleFill onClick={changePlusPost} /> : <AiFillMinusCircle onClick={changePlusPost} />} Post Contents  <BsPencilSquare /></label><br />
-                            {showinputTagPost ?
+                            <label>{showPlusPost ? <BsFillPlusCircleFill onClick={() => setShowPlusPost(!showPlusPost)} /> : <AiFillMinusCircle onClick={() => setShowPlusPost(!showPlusPost)} />} Post Contents  <BsPencilSquare /></label><br />
+                            {showPlusPost ? "" :
                                 <div>
                                     <textarea
                                         size="30"
@@ -105,10 +91,10 @@ const Modal = () => {
                                         }
                                     />
                                     <p>{word} words</p>
-                                </div> : ""
+                                </div>
                             }
-                            <label>{showPlusFile ? <BsFillPlusCircleFill onClick={changePlusFile} /> : <AiFillMinusCircle onClick={changePlusFile} />} Upload Thumbnail  </label><br />
-                            {showinputTagFile ?
+                            <label>{showPlusFile ? <BsFillPlusCircleFill onClick={() => setShowPlusFile(!showPlusFile)} /> : <AiFillMinusCircle onClick={() => setShowPlusFile(!showPlusFile)} />} Upload Thumbnail  </label><br />
+                            {showPlusFile ? "" :
                                 <div>
                                     <input
                                         type="file"
@@ -118,7 +104,7 @@ const Modal = () => {
                                             changeHandler('thumbFile', value)
                                         }}
                                     /><label for="file">{<MdOutlineDriveFolderUpload size={60} />}</label>
-                                </div> : ""
+                                </div>
                             }
                             <br />
                             <br />

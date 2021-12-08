@@ -1,5 +1,11 @@
 {
   "posts": [
-    
+    {
+      "post": "this is post for sending the content into Db.json file",
+      "image": "image_2021_12_02T13_22_35_311Z.png",
+      "size": 97640,
+      "type": "image/png",
+      "id": 1
+    }
   ]
 }
