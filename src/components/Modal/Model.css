@@ -60,3 +60,6 @@ body.active-modal {
     position: absolute;
 }
 
+.input-thumb{
+    display: none;
+}
