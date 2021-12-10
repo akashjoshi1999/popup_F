@@ -2,9 +2,8 @@ import React from 'react'
 import CartItem from '../CartItem/CartItem';
 import { useGlobalContext } from '../Reducer/context';
 
-function CartContainer() {
+const CartContainer = () => {
     const { cart, total, clearCart } = useGlobalContext()
-
     if (cart.length === 0) {
         return (
             <section className='cart'>
@@ -45,3 +44,4 @@ function CartContainer() {
 }
 
 export default CartContainer
+

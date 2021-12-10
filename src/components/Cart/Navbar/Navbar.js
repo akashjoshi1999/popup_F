@@ -1,8 +1,8 @@
 import React from 'react'
 import { useGlobalContext } from '../Reducer/context'
 
-function Navbar() {
-    const { amount } = useGlobalContext();
+const Navbar = () => {
+    const { amount } = useGlobalContext()
     return (
         <nav>
             <div className='nav-center'>

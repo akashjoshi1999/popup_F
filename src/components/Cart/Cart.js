@@ -4,12 +4,12 @@ import Navbar from './Navbar/Navbar'
 import { useGlobalContext } from './Reducer/context'
 
 function Cart() {
-    const { loading } = useGlobalContext();
+    const { loading } = useGlobalContext()
     console.log(loading)
     if (loading) {
         return (
-            <div className="loading">
-                <h1>Loading</h1>
+            <div className='loading'>
+                <h1>Loading...</h1>
             </div>
         )
     }

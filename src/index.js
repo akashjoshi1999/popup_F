@@ -6,9 +6,9 @@ import { AppProvider } from './components/Cart/Reducer/context';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <AppProvider> */}
+    <AppProvider>
       <App />
-    {/* </AppProvider> */}
+    </AppProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

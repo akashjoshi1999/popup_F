@@ -1,8 +1,7 @@
 import React from 'react'
 import { useGlobalContext } from '../Reducer/context'
 import './CartItem.css'
-
-function CartItem({ id, img, title, price, amount }) {
+const CartItem = ({ id, img, title, price, amount }) => {
     const { remove, increase, decrease, toggleAmount } = useGlobalContext()
     return (
         <article className='cart-item'>
